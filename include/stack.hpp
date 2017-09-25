@@ -1,6 +1,5 @@
 //Koshkina_Uliana
 
-#include <iostream>
 using namespace std;
 
 template <typename T>
@@ -10,19 +9,13 @@ public:
     	array_size_ = 100;
 	    array_ = new T[array_size_];
 	};
-
-    Stack(size_t _size) : array_size_(_size) {
-	    array_ = new T[array_size_];
-	};
-
-    size_t count() const {
-    	return count_;
-    };
+template <typename T>
+   Stack<T> :: Stack() : array_size_(_size), array_ (new T[array_size_]),count_(0) {}
 
     void push(T const &item) {
     	if(count_ == array_size_) {
 			T* new_array_ = new T[array_size_*2];
-			for(int i = 0; i < array_size_; i++) {
+			for(size_t i = 0; i < array_size_; i++) {
 				new_array_[i] = array_[i];
 			}
 			array_size_ = array_size_ * 2;
@@ -30,7 +23,6 @@ public:
 			delete[] array_;
 			array_ = new_array_;
 
-			array_[count_++] = item;
 		} else {
 			array_[count_++] = item;
 		}
